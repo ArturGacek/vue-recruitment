@@ -25,3 +25,11 @@ body {
 .placeholder-gray::placeholder {
   color: var(--gray);
 }
+
+.placeholder-primary::placeholder {
+  color: var(--primary);
+}
+
+.placeholder-secondary::placeholder {
+  color: var(--secondary);
+}

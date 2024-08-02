@@ -1,21 +1,15 @@
 <template>
   <div class="product-gallery max-w-[480px] relative">
-    <img
-      :src="mainImage.imgSrc"
-      :alt="mainImage.alt"
-      :data-id="mainImage.id"
-      class="w-[480px] h-[480px] object-cover"
-    />
+    <ImageComponent :image="mainImage" width="480px" height="480px" />
     <Badge :price="1.99" :originalPrice="500" />
     <div class="thumbnails flex space-x-2 mt-5 justify-between">
-      <img
+      <ImageComponent
         v-for="thumbnail in thumbnails"
+        :image="thumbnail"
         :key="thumbnail.id"
-        :src="thumbnail.imgSrc"
-        :alt="thumbnail.alt"
-        :data-id="thumbnail.id"
-        class="w-[132px] h-[132px]"
-        @click="updateMainImage($event)"
+        width="132px"
+        height="132px"
+        @click="updateMainImage"
       />
     </div>
   </div>
@@ -25,6 +19,7 @@
 import { ref } from 'vue';
 import Badge from './Badge.vue';
 import { ImageData } from '../App.vue';
+import ImageComponent from './ImageComponent.vue';
 
 const props = defineProps<{
   mainImage: ImageData;
@@ -33,20 +28,14 @@ const props = defineProps<{
 
 const mainImage = ref(props.mainImage);
 const thumbnails = ref(props.thumbnails);
+const updateMainImage = (image: ImageData) => {
+  console.log(image);
 
-const updateMainImage = (event: MouseEvent) => {
-  const thumbnail = event.target as HTMLImageElement;
   const filteredThumbnails = thumbnails.value.filter(
-    (thumb) => thumb.id !== thumbnail.dataset.id
+    (thumb) => thumb.id !== image.id
   );
 
-  const newMainImage: ImageData = {
-    imgSrc: thumbnail.src,
-    alt: thumbnail.alt,
-    id: thumbnail.dataset.id!,
-  };
-
   thumbnails.value = [...filteredThumbnails, mainImage.value];
-  mainImage.value = newMainImage;
+  mainImage.value = image;
 };
 </script>

@@ -1,10 +1,10 @@
 <template>
   <Wrapper>
-    <div class="flex container gap-5 items-center p-5">
+    <div class="flex flex-col lg:flex-row gap-5 items-center p-5">
       <ProductGallery :mainImage="mainImage" :thumbnails="thumbnails" />
       <ProductForm :securityProviders="securityProviders" />
     </div>
-    <div class="p-5 container mx-auto">
+    <div class="p-5 mx-auto">
       <h1 class="text-center text-48 font-bold">
         Top Tech Mystery Box at Unbeatable Prices
       </h1>
@@ -32,17 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import Wrapper from './components/Wrapper.vue';
+import Wrapper from './components/WrapperComponent.vue';
 import ProductGallery from './components/ProductGallery.vue';
 import ProductForm from './components/ProductForm.vue';
 import ImageParagraph from './components/ImageParagraph.vue';
-import FAQ from './components/FAQ.vue';
-import Footer from './components/Footer.vue';
+import FAQ from './components/FAQComponent.vue';
+import Footer from './components/FooterComponent.vue';
 
 export interface ImageData {
   imgSrc: string;
   alt: string;
   id: string;
+  click?: () => void;
 }
 
 interface ArticleData {

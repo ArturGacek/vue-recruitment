@@ -1,6 +1,6 @@
 <template>
   <article :class="containerClass">
-    <img :src="image.imgSrc" :alt="image.alt" :class="imageClass" />
+    <ImageComponent :image="image" :additionalClasses="imageClass" />
     <div>
       <h2 class="text-42 mb-5 leading-tight font-bold">
         <slot name="title"></slot>
@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { ImageData } from '../App.vue';
+import ImageComponent from './ImageComponent.vue';
 
 const props = defineProps<{
   image: ImageData;

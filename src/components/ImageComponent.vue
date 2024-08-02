@@ -2,7 +2,7 @@
   <img
     :src="image.imgSrc"
     :alt="image.alt"
-    :class="imageClasses"
+    :class="[imageClasses, additionalClasses]"
     @click="handleClick"
   />
 </template>
@@ -16,6 +16,7 @@ const props = defineProps<{
   width?: string;
   height?: string;
   onClick?: (image: ImageData) => void;
+  additionalClasses?: string;
 }>();
 
 const handleClick = () => {
@@ -27,10 +28,8 @@ const handleClick = () => {
 const imageClasses = computed(() => ({
   'cursor-pointer': !!props.onClick,
   'object-cover': true,
-  //   'w-auto': !props.width,
-  //   'h-auto': !props.height,
-  [`w-[${props.width}]`]: true,
-  [`h-[${props.height}]`]: true,
+  [`w-[${props.width}]`]: !!props.width,
+  [`h-[${props.height}]`]: !!props.height,
 }));
 </script>
 

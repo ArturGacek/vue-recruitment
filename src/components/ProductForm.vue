@@ -48,12 +48,12 @@
           PROCEED TO PAYMENT
         </button>
         <div class="flex mt-5 gap-1 justify-center">
-          <img
+          <ImageComponent
             v-for="thumbnail in securityProviders"
             :key="thumbnail.id"
-            :src="thumbnail.imgSrc"
-            :alt="thumbnail.alt"
-            class="w-[84px] h-[40px]"
+            :image="thumbnail"
+            width="94px"
+            height="40px"
           />
         </div>
       </form>
@@ -65,6 +65,7 @@
 import { ref } from 'vue';
 import CustomInput from './CustomInput.vue';
 import { ImageData } from '../App.vue';
+import ImageComponent from './ImageComponent.vue';
 
 defineProps<{
   securityProviders: ImageData[];
