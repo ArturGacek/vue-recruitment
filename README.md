@@ -1,5 +1,13 @@
-# Vue 3 + TypeScript + Vite
+# Vue 3 + TypeScript + Tailwind + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+The website allows users to buy Mystery Box.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Features: Vue + TypeScript + Tailwind + Vite
+
+Getting started Build/Run Requirements: NPM
+
+/_ First, Install the needed packages in root directory _/ npm install
+
+/_ Then start Vue project _/ npm run dev
+
+The app is deployed and can be viewed at https://66ae0b9bd8360d0008b885ae--vue-recruitment.netlify.app/
