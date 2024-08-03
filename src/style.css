@@ -12,8 +12,8 @@
   --border-color: #adadad;
   --border-black: #000000;
   --border-light-gray: #dbdbdb;
-  /* --error: #ed4545;
-  --error-light: #feecec; */
+  --error: #ed4545;
+  --error-light: #feecec;
 }
 
 body {

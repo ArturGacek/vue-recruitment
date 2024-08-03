@@ -12,6 +12,8 @@ export default {
       'border-color': 'var(--border-color)',
       'border-black': 'var(--border-black)',
       'border-light-gray': 'var(--border-light-gray)',
+      error: 'var(--error)',
+      'error-light': 'var(--error-light)',
     },
     extend: {
       fontFamily: {

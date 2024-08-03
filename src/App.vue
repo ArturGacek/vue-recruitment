@@ -5,15 +5,17 @@
         :mainImage="mainProductImage"
         :thumbnails="thumbnailImages"
       />
-      <ProductForm :securityProviders="securityProviders" />
+      <PurchaseForm :securityProviders="securityProviders" />
     </div>
-    <div class="p-5">
-      <h1 class="text-center text-48 font-bold">
+    <div class="p-5 pb-0 w-full flex flex-col items-center">
+      <h2 class="text-center text-48 font-bold w-full lg:w-1/2">
         Top Tech Mystery Box at Unbeatable Prices
-      </h1>
+      </h2>
       <p class="text-center font-medium text-20 mb-8 text-secondary">
         Fast shipping | Easy returns | Special discounts for students
       </p>
+    </div>
+    <div class="p-5">
       <div v-if="loading">Loading...</div>
       <ImageParagraph
         v-else
@@ -41,7 +43,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import Wrapper from './components/WrapperComponent.vue';
 import ProductGallery from './components/ProductGallery.vue';
-import ProductForm from './components/ProductForm.vue';
+import PurchaseForm from './components/PurchaseForm.vue';
 import ImageParagraph from './components/ImageParagraph.vue';
 import FAQ from './components/FAQComponent.vue';
 import Footer from './components/FooterComponent.vue';
