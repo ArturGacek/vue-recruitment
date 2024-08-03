@@ -161,6 +161,13 @@ const submitForm = () => {
       phoneNumber: phoneNumber.value,
       email: email.value,
     });
+    firstName.value = '';
+    lastName.value = '';
+    street.value = '';
+    postalCode.value = '';
+    city.value = '';
+    phoneNumber.value = '';
+    email.value = '';
   }
 };
 </script>
