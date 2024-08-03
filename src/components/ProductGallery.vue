@@ -1,14 +1,18 @@
 <template>
-  <div class="product-gallery max-w-[480px] relative">
-    <ImageComponent :image="mainImage" width="w-[480px]" height="h-[480px]" />
+  <div class="product-gallery max-w-[360px] md:max-w-[480px] relative">
+    <ImageComponent
+      :image="mainImage"
+      width="w-[360px] md:w-[480px]"
+      height="h-[360px] md:h-[480px]"
+    />
     <Badge :price="1.99" :originalPrice="500" />
-    <div class="thumbnails flex space-x-2 mt-5 justify-between">
+    <div class="thumbnails flex space-x-2 mt-5 justify-between w-">
       <ImageComponent
         v-for="thumbnail in thumbnails"
         :image="thumbnail"
         :key="thumbnail.id"
-        width="w-32"
-        height="w-32"
+        width="w-24 md:w-32"
+        height="w-24 md:w-32"
         additionalClasses="max-w-none"
         @click="updateMainImage"
       />

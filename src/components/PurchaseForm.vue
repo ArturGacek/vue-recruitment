@@ -1,5 +1,5 @@
 <template>
-  <div class="product-form flex-1 ml-5">
+  <div class="product-form flex-1 md:ml-5">
     <h1 class="text-52 font-extrabold mb-4 leading-55">
       Chance to win a StockX Mystery Box today!
     </h1>
