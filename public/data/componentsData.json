@@ -1,7 +1,7 @@
 [
   {
     "image": {
-      "imgSrc": "/src/assets/picture-1.svg",
+      "imgSrc": "/images/picture-1.svg",
       "alt": "Mystery Box Image 1",
       "id": "22"
     },
@@ -14,7 +14,7 @@
   },
   {
     "image": {
-      "imgSrc": "/src/assets/picture-2.svg",
+      "imgSrc": "/images/picture-2.svg",
       "alt": "Mystery Box Image 2",
       "id": "33"
     },
