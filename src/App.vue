@@ -1,17 +1,22 @@
 <template>
   <Wrapper>
     <div class="flex flex-col lg:flex-row gap-5 items-center p-5">
-      <ProductGallery :mainImage="mainImage" :thumbnails="thumbnails" />
+      <ProductGallery
+        :mainImage="mainProductImage"
+        :thumbnails="thumbnailImages"
+      />
       <ProductForm :securityProviders="securityProviders" />
     </div>
-    <div class="p-5 mx-auto">
+    <div class="p-5">
       <h1 class="text-center text-48 font-bold">
         Top Tech Mystery Box at Unbeatable Prices
       </h1>
       <p class="text-center font-medium text-20 mb-8 text-secondary">
         Fast shipping | Easy returns | Special discounts for students
       </p>
+      <div v-if="loading">Loading...</div>
       <ImageParagraph
+        v-else
         v-for="(data, index) in componentsData"
         :key="index"
         :image="data.image"
@@ -27,11 +32,13 @@
       </ImageParagraph>
     </div>
     <FAQ />
-    <Footer />
+    <Footer :image="footerImage" />
   </Wrapper>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import Wrapper from './components/WrapperComponent.vue';
 import ProductGallery from './components/ProductGallery.vue';
 import ProductForm from './components/ProductForm.vue';
@@ -39,70 +46,29 @@ import ImageParagraph from './components/ImageParagraph.vue';
 import FAQ from './components/FAQComponent.vue';
 import Footer from './components/FooterComponent.vue';
 
-export interface ImageData {
-  imgSrc: string;
-  alt: string;
-  id: string;
-  click?: () => void;
-}
+import { ArticleData } from './interfaces/ArticleData';
+import {
+  mainProductImage,
+  thumbnailImages,
+  securityProviders,
+  footerImage,
+} from './constants/index';
 
-interface ArticleData {
-  titleStart: string;
-  highlight: string;
-  titleEnd: string;
-  content: string;
-  image: ImageData;
-  mobilePosition: 'top' | 'bottom';
-  desktopPosition: 'left' | 'right';
-}
+const componentsData = ref<ArticleData[]>([]);
+const loading = ref(true);
 
-const mainImage: ImageData = {
-  id: '1',
-  imgSrc: '/src/assets/gallery-1.svg',
-  alt: 'Main Product Image',
-};
+onMounted(async () => {
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    const response = await axios.get<ArticleData[]>(
+      '/data/componentsData.json'
+    );
 
-const thumbnails: ImageData[] = [
-  { id: '2', imgSrc: '/src/assets/gallery-2.svg', alt: 'Thumbnail 1' },
-  { id: '3', imgSrc: '/src/assets/gallery-3.svg', alt: 'Thumbnail 2' },
-  { id: '4', imgSrc: '/src/assets/gallery-4.svg', alt: 'Thumbnail 3' },
-];
-const securityProviders: ImageData[] = [
-  { id: '44', imgSrc: '/src/assets/icon-1.svg', alt: 'McAfee Secure' },
-  { id: '45', imgSrc: '/src/assets/icon-2.svg', alt: 'TRUSTe' },
-  { id: '46', imgSrc: '/src/assets/icon-3.svg', alt: '256 BIT' },
-];
-
-const componentsData: ArticleData[] = [
-  {
-    image: {
-      imgSrc: '/src/assets/picture-1.svg',
-      alt: 'Mystery Box Image 1',
-      id: '22',
-    },
-    titleStart: 'Curious about the',
-    highlight: 'StockX',
-    titleEnd: 'Mystery Box?',
-    content: `Experience the thrill of unboxing cutting-edge gadgets with Stockx Mystery Boxes. Each box is a treasure trove of high-quality electronics, handpicked to elevate your tech game.
-              <br/><br/>
-              Expect the unexpected! Our boxes are packed with the latest gadgets, from smartphones to gaming consoles, ensuring you get the best tech surprises every time.`,
-    mobilePosition: 'top',
-    desktopPosition: 'left',
-  },
-  {
-    image: {
-      imgSrc: '/src/assets/picture-2.svg',
-      alt: 'Mystery Box Image 2',
-      id: '33',
-    },
-    titleStart: 'Why is everyone buzzing about these boxes?',
-    highlight: '',
-    titleEnd: '',
-    content: `StockX Mystery Boxes are not just about products; they’re about the experience. Imagine the excitement of unveiling top-tier electronics at a fraction of the cost.
-              <br/><br/>
-              Our boxes include a variety of premium tech items, making it a must-have for every tech enthusiast. Join the buzz and see why everyone is raving about the unbeatable value and surprise factor of Stockx Mystery Boxes!`,
-    mobilePosition: 'bottom',
-    desktopPosition: 'right',
-  },
-];
+    componentsData.value = response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  } finally {
+    loading.value = false;
+  }
+});
 </script>

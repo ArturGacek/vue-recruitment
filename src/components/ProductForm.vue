@@ -64,7 +64,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import CustomInput from './CustomInput.vue';
-import { ImageData } from '../App.vue';
+import { ImageData } from '../interfaces/ImageData';
 import ImageComponent from './ImageComponent.vue';
 
 defineProps<{

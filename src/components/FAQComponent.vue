@@ -1,6 +1,6 @@
 <template>
   <div
-    class="faq-container flex flex-col md:flex-row justify-between bg-background-secondary mt-10 gap-8 py-6 px-5"
+    class="faq-container flex flex-col md:flex-row justify-between bg-background-secondary gap-8 py-6 px-5"
   >
     <FAQItem
       v-for="item in faqs"

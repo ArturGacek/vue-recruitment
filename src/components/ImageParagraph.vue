@@ -1,7 +1,7 @@
 <template>
   <article :class="containerClass">
-    <ImageComponent :image="image" :additionalClasses="imageClass" />
-    <div>
+    <ImageComponent :image="image" />
+    <div class="w-full md:w-1/2">
       <h2 class="text-42 mb-5 leading-tight font-bold">
         <slot name="title"></slot>
       </h2>
@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { ImageData } from '../App.vue';
+import { ImageData } from '../interfaces/ImageData';
 import ImageComponent from './ImageComponent.vue';
 
 const props = defineProps<{
@@ -28,17 +28,6 @@ const containerClass = computed(() => {
       props.mobilePosition === 'top' ? '' : 'flex-col-reverse'
     }
     md:flex-row ${props.desktopPosition === 'left' ? '' : 'md:flex-row-reverse'}
-  `;
-});
-
-const imageClass = computed(() => {
-  return `
-    w-full ${
-      props.mobilePosition === 'top' || props.mobilePosition === 'bottom'
-        ? 'h-auto'
-        : ''
-    }
-    md:w-1/2
   `;
 });
 </script>

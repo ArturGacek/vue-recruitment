@@ -1,15 +1,17 @@
 <template>
-  <img
-    :src="image.imgSrc"
-    :alt="image.alt"
-    :class="[imageClasses, additionalClasses]"
-    @click="handleClick"
-  />
+  <div :class="wrapperClasses">
+    <img
+      :src="image.imgSrc"
+      :alt="image.alt"
+      :class="[imageClasses, additionalClasses]"
+      @click="handleClick"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { ImageData } from '../App.vue';
+import { computed, defineProps } from 'vue';
+import { ImageData } from '../interfaces/ImageData';
 
 const props = defineProps<{
   image: ImageData;
@@ -28,9 +30,14 @@ const handleClick = () => {
 const imageClasses = computed(() => ({
   'cursor-pointer': !!props.onClick,
   'object-cover': true,
-  [`w-[${props.width}]`]: !!props.width,
-  [`h-[${props.height}]`]: !!props.height,
+  'w-full': true,
+  'h-full': true,
 }));
-</script>
 
-<style scoped></style>
+const wrapperClasses = computed(() => {
+  return {
+    [props.width ?? 'w-auto']: true,
+    [props.height ?? 'h-auto']: true,
+  };
+});
+</script>
